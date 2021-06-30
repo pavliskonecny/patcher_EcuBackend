@@ -1,23 +1,33 @@
 """
 to convert from qt designer *.ui file to python *.py file use command:
-pyuic5 --from-imports -o gui/Ui_MainWindow.py gui/Ui_MainWindow.ui
+pyside2-uic --from-imports gui/Ui_MainWindow.ui -o gui/Ui_MainWindow.py
 
 to convert resources file *.qrc to python *.py file use command:
-pyrcc5 gui/resources.qrc -o gui/resources_rc.py
+pyside2-rcc -g python gui/resources.qrc > gui/resources_rc.py
 """
 
-from PyQt5.QtWidgets import QMainWindow, QMessageBox
+# from PySide2.QtUiTools import QUiLoader
+# from PySide2.QtCore import QFile
+from PySide2.QtWidgets import*
 from gui.Ui_MainWindow import Ui_MainWindow
 import files
 
 
 class MainWindow(QMainWindow):
-
     def __init__(self):
+        """
+        super(MainWidget, self).__init__()
+        designer_file = QFile("gui\\Ui_MainWindow2.ui")
+        designer_file.open(QFile.ReadOnly)
+        loader = QUiLoader()
+        self.ui = loader.load(designer_file, self)
+        designer_file.close()
+        """
+        """"""
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.show()
+        """"""
 
         self.ui.btnInstall.clicked.connect(self.btnInstall_clicked)
         self.ui.btnUninstall.clicked.connect(self.btnUninstall_clicked)
