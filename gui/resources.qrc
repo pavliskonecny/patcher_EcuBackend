@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="main ico">
+    <file>../images/MateoEcuServer.ico</file>
+  </qresource>
+  <qresource prefix="icons">
+    <file>../images/logo-hella.png</file>
+  </qresource>
+</RCC>
