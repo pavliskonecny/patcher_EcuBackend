@@ -1,8 +1,5 @@
 # for creating this file use command from virtual env terminal:
 # pip freeze > requirements.txt
 
-PyQt5
-PyQt5-sip
-PyQt5-stubs
 pyInstaller
 pySide2
