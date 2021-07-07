@@ -44,6 +44,8 @@ def make_build():
     if add_icon:
         cmd += " --icon " + project_folder + "\\" + ico_name  # --icon MyIcon.ico
 
+    #cmd += " --exclude-module numpy"
+
     print(cmd)
     os.system('cmd /c "' + cmd + '"')  # execute cmd
 
