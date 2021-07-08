@@ -29,43 +29,43 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         """"""
 
-        self.ui.btnInstall.clicked.connect(self.btnInstall_clicked)
-        self.ui.btnUninstall.clicked.connect(self.btnUninstall_clicked)
+        self.ui.btn_install.clicked.connect(self.btn_install_clicked)
+        self.ui.btn_uninstall.clicked.connect(self.btn_uninstall_clicked)
 
         # init window
         self.ui.lbl_patch_project.setText(files.get_patch_project())
         self.ui.lbl_patch_number.setText(files.get_patch_number())
         self.ui.lbl_patch_decription.setText(files.get_patch_description())
-        self.ui.txeOutput.setPlainText("")
+        self.ui.txe_output.setPlainText("")
 
-    def btnInstall_clicked(self):
+    def btn_install_clicked(self):
         try:
-            self.ui.txeOutput.setPlainText("*** START INSTALLING PATCH ***")
+            self.ui.txe_output.setPlainText("*** START INSTALLING PATCH ***")
 
             msg = files.check_destination_files()
-            self.ui.txeOutput.appendPlainText(msg)
+            self.ui.txe_output.appendPlainText(msg)
 
             msg = files.backup_files()
-            self.ui.txeOutput.appendPlainText(msg)
+            self.ui.txe_output.appendPlainText(msg)
 
             msg = files.replace_files()
-            self.ui.txeOutput.appendPlainText(msg)
+            self.ui.txe_output.appendPlainText(msg)
 
-            self.ui.txeOutput.appendPlainText("*** INSTALLING PATCH WAS SUCCESSFUL ***")
+            self.ui.txe_output.appendPlainText("*** INSTALLING PATCH WAS SUCCESSFUL ***")
             QMessageBox.information(self, "Done", f"Install patch complete!")
         except Exception as e:
-            self.ui.txeOutput.appendPlainText("*** ERROR - INSTALLING PATCH WAS NOT SUCCESSFUL ***")
+            self.ui.txe_output.appendPlainText("*** ERROR - INSTALLING PATCH WAS NOT SUCCESSFUL ***")
             QMessageBox.critical(self, "Error", f"INSTALLING PATCH WAS NOT SUCCESSFUL:\n{e}")
 
-    def btnUninstall_clicked(self):
+    def btn_uninstall_clicked(self):
         try:
-            self.ui.txeOutput.setPlainText("*** START UNINSTALLING PATCH ***")
+            self.ui.txe_output.setPlainText("*** START UNINSTALLING PATCH ***")
 
             msg = files.restore_backup_files()
-            self.ui.txeOutput.appendPlainText(msg)
+            self.ui.txe_output.appendPlainText(msg)
 
-            self.ui.txeOutput.appendPlainText("*** UNINSTALLING PATCH WAS SUCCESSFUL ***")
+            self.ui.txe_output.appendPlainText("*** UNINSTALLING PATCH WAS SUCCESSFUL ***")
             QMessageBox.information(self, "Done", f"Uninstall patch complete!")
         except Exception as e:
-            self.ui.txeOutput.appendPlainText("*** ERROR - UNINSTALLING PATCH WAS NOT SUCCESSFUL ***")
+            self.ui.txe_output.appendPlainText("*** ERROR - UNINSTALLING PATCH WAS NOT SUCCESSFUL ***")
             QMessageBox.critical(self, "Error", f"UNINSTALLING PATCH WAS NOT SUCCESSFUL:\n{e}")

@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setMinimumSize(QSize(570, 300))
-        MainWindow.setMaximumSize(QSize(570, 300))
+        MainWindow.setMaximumSize(QSize(1000, 900))
         icon = QIcon()
         icon.addFile(u":/main ico/images/MateoEcuServer.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -37,52 +37,52 @@ class Ui_MainWindow(object):
         self.centralwidget.setMaximumSize(QSize(16777215, 16777215))
         self.verticalLayout = QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.horizontalLayout = QHBoxLayout()
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalLayout.setContentsMargins(0, -1, 0, -1)
-        self.verticalLayout_2 = QVBoxLayout()
-        self.verticalLayout_2.setSpacing(10)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setSizeConstraint(QLayout.SetFixedSize)
-        self.verticalLayout_2.setContentsMargins(-1, -1, 0, -1)
-        self.btnInstall = QPushButton(self.centralwidget)
-        self.btnInstall.setObjectName(u"btnInstall")
+        self.lay_header = QHBoxLayout()
+        self.lay_header.setObjectName(u"lay_header")
+        self.lay_header.setContentsMargins(0, -1, 0, -1)
+        self.lay_buttons = QVBoxLayout()
+        self.lay_buttons.setSpacing(10)
+        self.lay_buttons.setObjectName(u"lay_buttons")
+        self.lay_buttons.setSizeConstraint(QLayout.SetFixedSize)
+        self.lay_buttons.setContentsMargins(-1, -1, 0, -1)
+        self.btn_install = QPushButton(self.centralwidget)
+        self.btn_install.setObjectName(u"btn_install")
         font = QFont()
         font.setBold(True)
         font.setWeight(75)
-        self.btnInstall.setFont(font)
-        self.btnInstall.setStyleSheet(u":enabled {\n"
+        self.btn_install.setFont(font)
+        self.btn_install.setStyleSheet(u":enabled {\n"
 " color:  rgb(0, 73, 122);\n"
 "background-color: rgb(226, 182, 0);\n"
 "}")
 
-        self.verticalLayout_2.addWidget(self.btnInstall)
+        self.lay_buttons.addWidget(self.btn_install)
 
-        self.btnUninstall = QPushButton(self.centralwidget)
-        self.btnUninstall.setObjectName(u"btnUninstall")
-        self.btnUninstall.setFont(font)
-        self.btnUninstall.setStyleSheet(u":enabled {\n"
+        self.btn_uninstall = QPushButton(self.centralwidget)
+        self.btn_uninstall.setObjectName(u"btn_uninstall")
+        self.btn_uninstall.setFont(font)
+        self.btn_uninstall.setStyleSheet(u":enabled {\n"
 " color:  rgb(0, 73, 122);\n"
 "background-color: rgb(226, 182, 0);\n"
 "}")
 
-        self.verticalLayout_2.addWidget(self.btnUninstall)
+        self.lay_buttons.addWidget(self.btn_uninstall)
 
 
-        self.horizontalLayout.addLayout(self.verticalLayout_2)
+        self.lay_header.addLayout(self.lay_buttons)
 
-        self.gridLayout_2 = QGridLayout()
-        self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.gridLayout_2.setContentsMargins(0, -1, 0, -1)
+        self.lay_info = QGridLayout()
+        self.lay_info.setObjectName(u"lay_info")
+        self.lay_info.setContentsMargins(0, -1, 0, -1)
         self.lbl_patch_number = QLabel(self.centralwidget)
         self.lbl_patch_number.setObjectName(u"lbl_patch_number")
 
-        self.gridLayout_2.addWidget(self.lbl_patch_number, 1, 0, 1, 1)
+        self.lay_info.addWidget(self.lbl_patch_number, 1, 0, 1, 1)
 
         self.lbl_patch_decription = QLabel(self.centralwidget)
         self.lbl_patch_decription.setObjectName(u"lbl_patch_decription")
 
-        self.gridLayout_2.addWidget(self.lbl_patch_decription, 2, 0, 1, 1)
+        self.lay_info.addWidget(self.lbl_patch_decription, 2, 0, 1, 1)
 
         self.lbl_patch_project = QLabel(self.centralwidget)
         self.lbl_patch_project.setObjectName(u"lbl_patch_project")
@@ -92,32 +92,32 @@ class Ui_MainWindow(object):
         font1.setWeight(75)
         self.lbl_patch_project.setFont(font1)
 
-        self.gridLayout_2.addWidget(self.lbl_patch_project, 0, 0, 1, 1)
+        self.lay_info.addWidget(self.lbl_patch_project, 0, 0, 1, 1)
 
 
-        self.horizontalLayout.addLayout(self.gridLayout_2)
+        self.lay_header.addLayout(self.lay_info)
 
-        self.lblLogo = QLabel(self.centralwidget)
-        self.lblLogo.setObjectName(u"lblLogo")
-        self.lblLogo.setEnabled(True)
-        self.lblLogo.setMaximumSize(QSize(80, 58))
-        self.lblLogo.setCursor(QCursor(Qt.ArrowCursor))
-        self.lblLogo.setFrameShape(QFrame.NoFrame)
-        self.lblLogo.setPixmap(QPixmap(u":/icons/images/logo-hella.png"))
-        self.lblLogo.setScaledContents(True)
-        self.lblLogo.setWordWrap(True)
+        self.lbl_logo = QLabel(self.centralwidget)
+        self.lbl_logo.setObjectName(u"lbl_logo")
+        self.lbl_logo.setEnabled(True)
+        self.lbl_logo.setMaximumSize(QSize(80, 58))
+        self.lbl_logo.setCursor(QCursor(Qt.ArrowCursor))
+        self.lbl_logo.setFrameShape(QFrame.NoFrame)
+        self.lbl_logo.setPixmap(QPixmap(u":/icons/images/logo-hella.png"))
+        self.lbl_logo.setScaledContents(True)
+        self.lbl_logo.setWordWrap(True)
 
-        self.horizontalLayout.addWidget(self.lblLogo)
+        self.lay_header.addWidget(self.lbl_logo)
 
 
-        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.verticalLayout.addLayout(self.lay_header)
 
-        self.txeOutput = QPlainTextEdit(self.centralwidget)
-        self.txeOutput.setObjectName(u"txeOutput")
-        self.txeOutput.setEnabled(True)
-        self.txeOutput.setReadOnly(True)
+        self.txe_output = QPlainTextEdit(self.centralwidget)
+        self.txe_output.setObjectName(u"txe_output")
+        self.txe_output.setEnabled(True)
+        self.txe_output.setReadOnly(True)
 
-        self.verticalLayout.addWidget(self.txeOutput)
+        self.verticalLayout.addWidget(self.txe_output)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -128,14 +128,14 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Patcher for EcuBackend 1.0", None))
-        self.btnInstall.setText(QCoreApplication.translate("MainWindow", u"INSTALL\n"
+        self.btn_install.setText(QCoreApplication.translate("MainWindow", u"INSTALL\n"
 "patch", None))
-        self.btnUninstall.setText(QCoreApplication.translate("MainWindow", u"UNINSTALL\n"
+        self.btn_uninstall.setText(QCoreApplication.translate("MainWindow", u"UNINSTALL\n"
 "patch", None))
         self.lbl_patch_number.setText(QCoreApplication.translate("MainWindow", u"Patch_number", None))
         self.lbl_patch_decription.setText(QCoreApplication.translate("MainWindow", u"Patch_description", None))
         self.lbl_patch_project.setText(QCoreApplication.translate("MainWindow", u"Patch_project", None))
-        self.lblLogo.setText("")
-        self.txeOutput.setPlainText(QCoreApplication.translate("MainWindow", u"Output text...", None))
+        self.lbl_logo.setText("")
+        self.txe_output.setPlainText(QCoreApplication.translate("MainWindow", u"Output text...", None))
     # retranslateUi
 

@@ -27,8 +27,8 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>570</width>
-    <height>300</height>
+    <width>1000</width>
+    <height>900</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -56,7 +56,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="lay_header">
       <property name="leftMargin">
        <number>0</number>
       </property>
@@ -64,7 +64,7 @@
        <number>0</number>
       </property>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0">
+       <layout class="QVBoxLayout" name="lay_buttons" stretch="0,0">
         <property name="spacing">
          <number>10</number>
         </property>
@@ -75,7 +75,7 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QPushButton" name="btnInstall">
+         <widget class="QPushButton" name="btn_install">
           <property name="font">
            <font>
             <weight>75</weight>
@@ -95,7 +95,7 @@ patch</string>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="btnUninstall">
+         <widget class="QPushButton" name="btn_uninstall">
           <property name="font">
            <font>
             <weight>75</weight>
@@ -117,7 +117,7 @@ patch</string>
        </layout>
       </item>
       <item>
-       <layout class="QGridLayout" name="gridLayout_2">
+       <layout class="QGridLayout" name="lay_info">
         <property name="leftMargin">
          <number>0</number>
         </property>
@@ -155,7 +155,7 @@ patch</string>
        </layout>
       </item>
       <item>
-       <widget class="QLabel" name="lblLogo">
+       <widget class="QLabel" name="lbl_logo">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -188,7 +188,7 @@ patch</string>
      </layout>
     </item>
     <item>
-     <widget class="QPlainTextEdit" name="txeOutput">
+     <widget class="QPlainTextEdit" name="txe_output">
       <property name="enabled">
        <bool>true</bool>
       </property>
