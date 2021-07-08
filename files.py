@@ -3,7 +3,7 @@ import sys
 import data
 from shutil import copyfile, move, rmtree
 
-_PATCH_FILES_FOLDER = "patch_files"
+PATCH_FILES_FOLDER = "patch_files"
 _ECU_SERVER_PATH = "C:\\Data\\mateo\\EcuBackend\\ecu-server\\server"
 
 
@@ -74,7 +74,7 @@ def replace_files() -> str:
         actual_path = str(sys.path[1])
         # temp path of exe file contains this folder "lib-dynload". I don't know why...
         actual_path = actual_path.replace("\\lib-dynload", "")
-        source_path = f"{actual_path}\\{_PATCH_FILES_FOLDER}\\{folder_number}\\{file_name}"
+        source_path = f"{actual_path}\\{PATCH_FILES_FOLDER}\\{folder_number}\\{file_name}"
         if not os.path.isfile(source_path):
             raise Exception(f"Internal program error - source file does not exist!\n{source_path}")
         # replace file
@@ -109,21 +109,21 @@ def restore_backup_files() -> str:
 
 
 def copy_files_to_project():
-    assert os.path.isdir(_PATCH_FILES_FOLDER), "Internal error - Project files folder doesnt found!"
+    assert os.path.isdir(PATCH_FILES_FOLDER), "Internal error - Project files folder doesnt found!"
     # remove "project files folder" because of cleaning
-    rmtree(_PATCH_FILES_FOLDER)
-    if os.path.isdir(_PATCH_FILES_FOLDER):
+    rmtree(PATCH_FILES_FOLDER)
+    if os.path.isdir(PATCH_FILES_FOLDER):
         raise Exception("Internal error - Project file folder can not be deleted. Could be permission denied")
     # create clear folder again
-    os.mkdir(_PATCH_FILES_FOLDER)
-    if not os.path.isdir(_PATCH_FILES_FOLDER):
+    os.mkdir(PATCH_FILES_FOLDER)
+    if not os.path.isdir(PATCH_FILES_FOLDER):
         raise Exception("Internal error - Project file folder can not be created. Could be permission denied")
     # inside create folder 0-x according to count of required files
     folder_number = 0
     for source_path in data.PATCH_FILES:
-        os.mkdir(f"{_PATCH_FILES_FOLDER}\\{folder_number}")
+        os.mkdir(f"{PATCH_FILES_FOLDER}\\{folder_number}")
         file_name = os.path.basename(source_path)
-        destination_path = f"{_PATCH_FILES_FOLDER}\\{folder_number}\\{file_name}"
+        destination_path = f"{PATCH_FILES_FOLDER}\\{folder_number}\\{file_name}"
         copyfile(source_path, destination_path)  # destination folders have to exist as first!!!
         file_exist = os.path.isfile(destination_path)
         if not file_exist:
