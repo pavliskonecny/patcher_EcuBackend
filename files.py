@@ -44,7 +44,7 @@ def check_destination_files() -> str:
         file_exist = os.path.isfile(destination_path)
         if not file_exist:
             raise Exception(f"File can not be replaced because it does not exist!\n{destination_path}")
-        msg = msg + f"Required file exist... - {destination_path}\n"
+        msg = msg + f"Required patch file exist... - {destination_path}\n"
     return msg.rstrip()
 
 
@@ -58,11 +58,11 @@ def backup_files() -> str:
             raise Exception(f"Patch is installed already because backup file exist already!\n"
                             f"For reinstalling patch you have to uninstall patch as first!\n{destination_path}")
         # Make backup of file
-        msg = msg + f"Creating backup file... - {destination_path}\n"
+        msg = msg + f"Creating backup patch file... - {destination_path}\n"
         copyfile(source_path, destination_path)
         file_exist = os.path.isfile(destination_path)
         if not file_exist:
-            raise Exception(f"File could not be backup! Permission denied probably\n{destination_path}")
+            raise Exception(f"File could not be backup! Could be permission denied!\n{destination_path}")
     return msg.rstrip()
 
 
@@ -78,11 +78,11 @@ def replace_files() -> str:
         if not os.path.isfile(source_path):
             raise Exception(f"Internal program error - source file does not exist!\n{source_path}")
         # replace file
-        msg = msg + f"Replacing required file... - {destination_path}\n"
+        msg = msg + f"Replacing required patch file... - {destination_path}\n"
         copyfile(source_path, destination_path)  # destination folders have to exist as first!!!
         file_exist = os.path.isfile(destination_path)
         if not file_exist:
-            raise Exception(f"File could not be created! Permission denied probably\n{destination_path}")
+            raise Exception(f"File could not be created! Could be permission denied!\n{destination_path}")
         folder_number += 1
     return msg.rstrip()
 
@@ -94,17 +94,17 @@ def restore_backup_files() -> str:
         destination_path = _gen_backup_file_name(source_path)
         file_exist = os.path.isfile(destination_path)
         if not file_exist:
-            raise Exception(f"Patch can not be uninstalled because backup file doesn't exist!\n{destination_path}")
+            raise Exception(f"Patch can't be uninstalled because backup patch file doesn't exist!\n{destination_path}")
 
     # Restore backup files
     for source_path in data.PATCH_FILES:
         destination_path = _gen_backup_file_name(source_path)
-        msg = msg + f"Restore required file ... - {destination_path}\n"
+        msg = msg + f"Restore required patch file ... - {destination_path}\n"
         move(destination_path, source_path)
         backup_exist = os.path.isfile(destination_path)
         orig_exist = os.path.isfile(source_path)
         if backup_exist or not orig_exist:
-            raise Exception(f"File could not be restore! Permission denied probably\n{destination_path}")
+            raise Exception(f"File could not be restore. Could be permission denied!\n{destination_path}")
     return msg.rstrip()
 
 
@@ -113,11 +113,11 @@ def copy_files_to_project():
     # remove "project files folder" because of cleaning
     rmtree(PATCH_FILES_FOLDER)
     if os.path.isdir(PATCH_FILES_FOLDER):
-        raise Exception("Internal error - Project file folder can not be deleted. Could be permission denied")
+        raise Exception("Internal error - Project file folder can not be deleted. Could be permission denied!")
     # create clear folder again
     os.mkdir(PATCH_FILES_FOLDER)
     if not os.path.isdir(PATCH_FILES_FOLDER):
-        raise Exception("Internal error - Project file folder can not be created. Could be permission denied")
+        raise Exception("Internal error - Project file folder can not be created. Could be permission denied!")
     # inside create folder 0-x according to count of required files
     folder_number = 0
     for source_path in data.PATCH_FILES:
@@ -127,7 +127,7 @@ def copy_files_to_project():
         copyfile(source_path, destination_path)  # destination folders have to exist as first!!!
         file_exist = os.path.isfile(destination_path)
         if not file_exist:
-            raise Exception(f"File can not be copied to \"project file folder!\" Could be permission denied\n"
+            raise Exception(f"File can not be copied to \"project file folder!\" Could be permission denied!\n"
                             f"{destination_path}")
         folder_number += 1
 

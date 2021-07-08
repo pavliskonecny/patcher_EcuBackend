@@ -6,8 +6,6 @@ to convert resources file *.qrc to python *.py file use command:
 pyside2-rcc -g python gui/resources.qrc > gui/resources_rc.py
 """
 
-# from PySide2.QtUiTools import QUiLoader
-# from PySide2.QtCore import QFile
 from PySide2.QtWidgets import*
 from gui.Ui_MainWindow import Ui_MainWindow
 import files
@@ -15,19 +13,9 @@ import files
 
 class MainWindow(QMainWindow):
     def __init__(self):
-        """
-        super(MainWidget, self).__init__()
-        designer_file = QFile("gui\\Ui_MainWindow2.ui")
-        designer_file.open(QFile.ReadOnly)
-        loader = QUiLoader()
-        self.ui = loader.load(designer_file, self)
-        designer_file.close()
-        """
-        """"""
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        """"""
 
         self.ui.btn_install.clicked.connect(self.btn_install_clicked)
         self.ui.btn_uninstall.clicked.connect(self.btn_uninstall_clicked)
