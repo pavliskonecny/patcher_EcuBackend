@@ -3,7 +3,7 @@ import sys
 import data
 from shutil import copyfile, move, rmtree
 
-_PROJECT_FILES_FOLDER = "source_files"
+_PATCH_FILES_FOLDER = "patch_files"
 _ECU_SERVER_PATH = "C:\\Data\\mateo\\EcuBackend\\ecu-server\\server"
 
 
@@ -40,7 +40,7 @@ def _gen_backup_file_name(file_path: str) -> str:
 
 def check_destination_files() -> str:
     msg = ""
-    for destination_path in data.PATCH_FILE_PATHS:
+    for destination_path in data.PATCH_FILES:
         file_exist = os.path.isfile(destination_path)
         if not file_exist:
             raise Exception(f"File can not be replaced because it does not exist!\n{destination_path}")
@@ -50,7 +50,7 @@ def check_destination_files() -> str:
 
 def backup_files() -> str:
     msg = ""
-    for source_path in data.PATCH_FILE_PATHS:
+    for source_path in data.PATCH_FILES:
         destination_path = _gen_backup_file_name(source_path)
         # If backup file exist, then stop
         file_exist = os.path.isfile(destination_path)
@@ -69,12 +69,12 @@ def backup_files() -> str:
 def replace_files() -> str:
     msg = ""
     folder_number = 0
-    for destination_path in data.PATCH_FILE_PATHS:
+    for destination_path in data.PATCH_FILES:
         file_name = os.path.basename(destination_path)
         actual_path = str(sys.path[1])
         # temp path of exe file contains this folder "lib-dynload". I don't know why...
         actual_path = actual_path.replace("\\lib-dynload", "")
-        source_path = f"{actual_path}\\{_PROJECT_FILES_FOLDER}\\{folder_number}\\{file_name}"
+        source_path = f"{actual_path}\\{_PATCH_FILES_FOLDER}\\{folder_number}\\{file_name}"
         if not os.path.isfile(source_path):
             raise Exception(f"Internal program error - source file does not exist!\n{source_path}")
         # replace file
@@ -90,14 +90,14 @@ def replace_files() -> str:
 def restore_backup_files() -> str:
     msg = ""
     # Check exist of backup files
-    for source_path in data.PATCH_FILE_PATHS:
+    for source_path in data.PATCH_FILES:
         destination_path = _gen_backup_file_name(source_path)
         file_exist = os.path.isfile(destination_path)
         if not file_exist:
             raise Exception(f"Patch can not be uninstalled because backup file doesn't exist!\n{destination_path}")
 
     # Restore backup files
-    for source_path in data.PATCH_FILE_PATHS:
+    for source_path in data.PATCH_FILES:
         destination_path = _gen_backup_file_name(source_path)
         msg = msg + f"Restore required file ... - {destination_path}\n"
         move(destination_path, source_path)
@@ -109,21 +109,21 @@ def restore_backup_files() -> str:
 
 
 def copy_files_to_project():
-    assert os.path.isdir(_PROJECT_FILES_FOLDER), "Internal error - Project files folder doesnt found!"
+    assert os.path.isdir(_PATCH_FILES_FOLDER), "Internal error - Project files folder doesnt found!"
     # remove "project files folder" because of cleaning
-    rmtree(_PROJECT_FILES_FOLDER)
-    if os.path.isdir(_PROJECT_FILES_FOLDER):
+    rmtree(_PATCH_FILES_FOLDER)
+    if os.path.isdir(_PATCH_FILES_FOLDER):
         raise Exception("Internal error - Project file folder can not be deleted. Could be permission denied")
     # create clear folder again
-    os.mkdir(_PROJECT_FILES_FOLDER)
-    if not os.path.isdir(_PROJECT_FILES_FOLDER):
+    os.mkdir(_PATCH_FILES_FOLDER)
+    if not os.path.isdir(_PATCH_FILES_FOLDER):
         raise Exception("Internal error - Project file folder can not be created. Could be permission denied")
     # inside create folder 0-x according to count of required files
     folder_number = 0
-    for source_path in data.PATCH_FILE_PATHS:
-        os.mkdir(f"{_PROJECT_FILES_FOLDER}\\{folder_number}")
+    for source_path in data.PATCH_FILES:
+        os.mkdir(f"{_PATCH_FILES_FOLDER}\\{folder_number}")
         file_name = os.path.basename(source_path)
-        destination_path = f"{_PROJECT_FILES_FOLDER}\\{folder_number}\\{file_name}"
+        destination_path = f"{_PATCH_FILES_FOLDER}\\{folder_number}\\{file_name}"
         copyfile(source_path, destination_path)  # destination folders have to exist as first!!!
         file_exist = os.path.isfile(destination_path)
         if not file_exist:

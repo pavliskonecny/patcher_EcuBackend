@@ -14,13 +14,13 @@ PATCH_DESCRIPTION = "measurement fix"
 """
 Specify the absolute path for files what should be stored to executable file and replaced later. Example:
 
-PATCH_FILE_PATHS = [
+PATCH_FILES = [
     "C:\\Data\\DEV\\src\\Ecu.Server\\VAG\\VWIDBuzz\\VWIDBuzzTOP.py",
     "C:\\Data\\DEV\\src\\Ecu.Server\\VAG\\VWIDBuzz\\VWIDBuzzTOPService.py",
 ]
 """
 
-PATCH_FILE_PATHS = [
+PATCH_FILES = [
     "C:\\Users\\konepa1\\Desktop\\test_patcher\\one.jpg",
     "C:\\Users\\konepa1\\Desktop\\test_patcher\\two.jpg",
 ]
