@@ -8,10 +8,11 @@ pyside2-rcc -g python gui/resources.qrc > gui/resources_rc.py
 
 from PySide2.QtWidgets import*
 from gui.Ui_MainWindow import Ui_MainWindow
-import files
+from PatchFiles import PatchFiles
 
 
 class MainWindow(QMainWindow):
+
     def __init__(self):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
@@ -21,22 +22,23 @@ class MainWindow(QMainWindow):
         self.ui.btn_uninstall.clicked.connect(self.btn_uninstall_clicked)
 
         # init window
-        self.ui.lbl_patch_project.setText(files.get_patch_project())
-        self.ui.lbl_patch_number.setText(files.get_patch_number())
-        self.ui.lbl_patch_decription.setText(files.get_patch_description())
+        self.ui.lbl_patch_project.setText(PatchFiles.PATCH_PROJECT)
+        self.ui.lbl_patch_number.setText(PatchFiles.PATCH_NUMBER)
+        self.ui.lbl_patch_decription.setText(PatchFiles.PATCH_DESCRIPTION)
         self.ui.txe_output.setPlainText("")
 
     def btn_install_clicked(self):
         try:
             self.ui.txe_output.setPlainText("*** START INSTALLING PATCH ***")
+            pf = PatchFiles()
 
-            msg = files.check_destination_files()
+            msg = pf.check_destination_files()
             self.ui.txe_output.appendPlainText(msg)
 
-            msg = files.backup_files()
+            msg = pf.backup_files()
             self.ui.txe_output.appendPlainText(msg)
 
-            msg = files.replace_files()
+            msg = pf.replace_files()
             self.ui.txe_output.appendPlainText(msg)
 
             self.ui.txe_output.appendPlainText("*** INSTALLING PATCH WAS SUCCESSFUL ***")
@@ -48,8 +50,9 @@ class MainWindow(QMainWindow):
     def btn_uninstall_clicked(self):
         try:
             self.ui.txe_output.setPlainText("*** START UNINSTALLING PATCH ***")
+            pf = PatchFiles()
 
-            msg = files.restore_backup_files()
+            msg = pf.restore_backup_files()
             self.ui.txe_output.appendPlainText(msg)
 
             self.ui.txe_output.appendPlainText("*** UNINSTALLING PATCH WAS SUCCESSFUL ***")

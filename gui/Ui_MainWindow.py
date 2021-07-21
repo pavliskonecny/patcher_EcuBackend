@@ -19,14 +19,14 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.setEnabled(True)
-        MainWindow.resize(570, 300)
+        MainWindow.resize(700, 300)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMinimumSize(QSize(570, 300))
-        MainWindow.setMaximumSize(QSize(1000, 900))
+        MainWindow.setMinimumSize(QSize(700, 300))
+        MainWindow.setMaximumSize(QSize(1600, 900))
         icon = QIcon()
         icon.addFile(u":/main ico/images/MateoEcuServer.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -47,6 +47,7 @@ class Ui_MainWindow(object):
         self.lay_buttons.setContentsMargins(-1, -1, 0, -1)
         self.btn_install = QPushButton(self.centralwidget)
         self.btn_install.setObjectName(u"btn_install")
+        self.btn_install.setMaximumSize(QSize(200, 16777215))
         font = QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -60,6 +61,7 @@ class Ui_MainWindow(object):
 
         self.btn_uninstall = QPushButton(self.centralwidget)
         self.btn_uninstall.setObjectName(u"btn_uninstall")
+        self.btn_uninstall.setMaximumSize(QSize(200, 16777215))
         self.btn_uninstall.setFont(font)
         self.btn_uninstall.setStyleSheet(u":enabled {\n"
 " color:  rgb(0, 73, 122);\n"

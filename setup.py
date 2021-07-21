@@ -1,19 +1,19 @@
 import os
 import sys
-import files
+from PatchFiles import PatchFiles
 
 # ******************************************************
 # CHANGE THIS PARAMETERS AS NEEDED
 main_py_file_name = 'main.py'
 
 add_exe_file_name = True    # False will make exe file name the same like project name folder
-exe_file_name = f"{files.get_patch_project()} {files.get_patch_number()}"
+exe_file_name = f"{PatchFiles.PATCH_PROJECT} {PatchFiles.PATCH_NUMBER}"
 
 add_icon = True             # Add exe file icon
 ico_name = "images\\MateoEcuServer.ico"
 
 add_folder = True           # Include folder to exe file
-add_folder_name = files.PATCH_FILES_FOLDER
+add_folder_name = PatchFiles.PATCH_FILES_FOLDER
 
 gui_app = True              # False will take console app, True will take GUI app
 
@@ -73,8 +73,8 @@ def open_folder():
 
 
 if __name__ == "__main__":
-    print("Copy \"patch files\" to project folder ...")
-    files.copy_files_to_project()
+    print('Copy "patch files" to project folder ...')
+    PatchFiles.copy_files_to_project()
     print("Successful!")
     print("Start building ...")
     make_build()

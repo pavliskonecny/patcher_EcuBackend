@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>570</width>
+    <width>700</width>
     <height>300</height>
    </rect>
   </property>
@@ -21,13 +21,13 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>570</width>
+    <width>700</width>
     <height>300</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1000</width>
+    <width>1600</width>
     <height>900</height>
    </size>
   </property>
@@ -76,6 +76,12 @@
         </property>
         <item>
          <widget class="QPushButton" name="btn_install">
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <weight>75</weight>
@@ -96,6 +102,12 @@ patch</string>
         </item>
         <item>
          <widget class="QPushButton" name="btn_uninstall">
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <weight>75</weight>
