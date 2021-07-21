@@ -7,9 +7,9 @@ PATCH_PROJECT = "Audi Q6"
 PATCH_DESCRIPTION = "added direct fan control + signal animations"
 
 """
-Specify the absolute path for files what should be stored to executable file and replaced later.
+Specify the relative path for files what should be stored to executable file and replaced later.
 """
 PATCH_FILES = [
-    "C:\\Data\\DEV\\src\\Ecu.Server\\z_test_patcher\\one.jpg",
-    "C:\\Data\\DEV\\src\\Ecu.Server\\z_test_patcher\\two.jpg",
+    "z_test_patcher/one.jpg",
+    "z_test_patcher/two.jpg",
 ]

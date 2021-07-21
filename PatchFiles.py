@@ -6,8 +6,10 @@ from shutil import copyfile, move, rmtree
 
 class PatchFiles:
     PATCH_FILES_FOLDER = "patch_files"
-    _ECU_SERVER_INSTALL_PATH = "C:\\Data\\mateo\\EcuBackend\\ecu-server\\server\\"
-    _ECU_SERVER_DEV_PATH = "C:\\Data\\DEV\\src\\Ecu.Server\\"
+    #_ECU_SERVER_INSTALL_PATH = "C:\\Data\\mateo\\EcuBackend\\ecu-server\\server\\"
+    #_ECU_SERVER_DEV_PATH = "C:\\Data\\DEV\\src\\Ecu.Server\\"
+    _ECU_SERVER_INSTALL_PATH = "C:/Data/mateo/EcuBackend/ecu-server/server/"
+    _ECU_SERVER_DEV_PATH = "C:/Data/DEV/src/Ecu.Server/"
 
     PATCH_PROJECT = USER_DATA.PATCH_PROJECT
     PATCH_NUMBER = USER_DATA.PATCH_NUMBER
@@ -20,16 +22,11 @@ class PatchFiles:
         self.patch_number = USER_DATA.PATCH_NUMBER
         self.patch_description = USER_DATA.PATCH_DESCRIPTION
         """
-
-        # Convert EcuServer file paths from development to installed
+        # Add absolut path to patch files
         self.patch_files = list()
-        for path in USER_DATA.PATCH_FILES:
-            try:
-                _ = path.index(self._ECU_SERVER_DEV_PATH)
-            except ValueError:
-                raise ValueError(f"Internal program error - EcuServer development path can not be found!")
-            path = path.replace(self._ECU_SERVER_DEV_PATH, self._ECU_SERVER_INSTALL_PATH)
-            self.patch_files.append(path)
+        for rel_path in USER_DATA.PATCH_FILES:
+            abs_path = self._ECU_SERVER_INSTALL_PATH + rel_path
+            self.patch_files.append(abs_path)
 
     def _gen_backup_file_name(self, file_path: str) -> str:
         """
@@ -122,7 +119,8 @@ class PatchFiles:
             raise Exception("Internal error - Project file folder can not be created. Could be permission denied!")
         # inside create folder 0-x according to count of required files
         folder_number = 0
-        for source_path in USER_DATA.PATCH_FILES:
+        for rel_path in USER_DATA.PATCH_FILES:
+            source_path = PatchFiles._ECU_SERVER_DEV_PATH + rel_path
             os.mkdir(f"{PatchFiles.PATCH_FILES_FOLDER}\\{folder_number}")
             file_name = os.path.basename(source_path)
             destination_path = f"{PatchFiles.PATCH_FILES_FOLDER}\\{folder_number}\\{file_name}"
