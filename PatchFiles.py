@@ -108,9 +108,9 @@ class PatchFiles:
 
     @staticmethod
     def copy_files_to_project():
-        assert os.path.isdir(PatchFiles.PATCH_FILES_FOLDER), "Internal error - Project files folder doesnt found!"
-        # remove "project files folder" because of cleaning
-        rmtree(PatchFiles.PATCH_FILES_FOLDER)
+        # remove "patch files folder" because of cleaning
+        if os.path.isdir(PatchFiles.PATCH_FILES_FOLDER):
+            rmtree(PatchFiles.PATCH_FILES_FOLDER)
         if os.path.isdir(PatchFiles.PATCH_FILES_FOLDER):
             raise Exception("Internal error - Project file folder can not be deleted. Could be permission denied!")
         # create clear folder again
