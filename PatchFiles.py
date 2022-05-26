@@ -6,7 +6,7 @@ from shutil import copyfile, move, rmtree
 
 class PatchFiles:
     PATCH_FILES_FOLDER = "patch_files"
-    _ECU_SERVER_INSTALL_PATH = "C:/Data/mateo/EcuBackend/ecu-server/server/"
+    _ECU_SERVER_INSTALL_PATH = "C:/Data/Python/venv/ecuserver/Lib/site-packages/"
     _ECU_SERVER_DEV_PATH = "C:/Data/DEV/src/Ecu.Server/"
 
     PATCH_PROJECT = USER_DATA.PATCH_PROJECT
