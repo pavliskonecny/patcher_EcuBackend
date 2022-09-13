@@ -3,16 +3,24 @@ Specify patch "project & number & description" appears on main window and use as
 !!! patch number must be unique because of creating unique backup file names!!!
 """
 PATCH_NUMBER = "patch1"
-PATCH_PROJECT = "Lamborghini LB744"
-PATCH_DESCRIPTION = f"USE THIS PATCH FOR EcuBackend 22.04.28 ONLY !!!\n\n" \
-                    f"- added control of addHB via light distributions\n\n" \
-                    f"- added reading of VW FAZIT String"
+PATCH_PROJECT = "LiXiang X01"
+PATCH_DESCRIPTION = f"USE THIS PATCH FOR EcuBackend 22.08.23 ONLY !!!\n\n" \
+                    f"- added services FanControl, MotorLeveler, SecurityAccess"
 
 """
 Specify the relative path for files what should be stored to executable file and replaced later.
 """
 PATCH_FILES = [
-    "ecuserver/VAG/LamborghiniLB744/LamborghiniLB744.py",
-    "ecuserver/VAG/LamborghiniLB744/LamborghiniLB744Service.py",
-    "ecuserver/VAG/LamborghiniLB744/mxb_distribution_definition.py",
+    "ecuserver/Ecu/LHCM/LHCM.py",
+    "ecuserver/Ecu/LHCM/security_handler.py",
+    "ecuserver/EcuServicesFuncs/LHCMServiceFunctions.py",
+    "ecuserver/LiXiang/LiaX01/LiaX01Service.py",
+    "ecuserver/CAN_Trace/ECU/LHCM_CanCyclic.csv"
+]
+
+"""
+Specify the relative path for files what are new and it is not possible to backup. But they must be in PATCH_FILES !
+"""
+NEW_PATCH_FILES = [
+    "ecuserver/Ecu/LHCM/security_handler.py",
 ]
