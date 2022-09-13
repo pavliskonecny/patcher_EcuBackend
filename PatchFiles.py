@@ -13,6 +13,7 @@ class PatchFiles:
     PATCH_NUMBER = USER_DATA.PATCH_NUMBER
     PATCH_DESCRIPTION = USER_DATA.PATCH_DESCRIPTION
     patch_files = None
+    new_patch_files = None
 
     def __init__(self):
         """
@@ -25,6 +26,12 @@ class PatchFiles:
         for rel_path in USER_DATA.PATCH_FILES:
             abs_path = self._ECU_SERVER_INSTALL_PATH + rel_path
             self.patch_files.append(abs_path)
+
+        # Add absolut path to new patch files
+        self.new_patch_files = list()
+        for rel_path in USER_DATA.NEW_PATCH_FILES:
+            abs_path = self._ECU_SERVER_INSTALL_PATH + rel_path
+            self.new_patch_files.append(abs_path)
 
     def _gen_backup_file_name(self, file_path: str) -> str:
         """
@@ -81,6 +88,38 @@ class PatchFiles:
             if not file_exist:
                 raise Exception(f"File could not be created! Could be permission denied!\n{destination_path}")
             folder_number += 1
+        return msg.rstrip()
+
+    def add_new_patch_files(self) -> str:
+        msg = ""
+
+        for destination_path in self.new_patch_files:
+            file_name = os.path.basename(destination_path)
+            actual_path = str(sys.path[1])
+            # temp path of exe file contains this folder "lib-dynload". I don't know why...
+            actual_path = actual_path.replace("\\lib-dynload", "")
+
+            source_path = ""
+            for folder_number in range(len(self.patch_files)-1):
+                s_path = f"{actual_path}\\{self.PATCH_FILES_FOLDER}\\{folder_number}\\{file_name}"
+                if not os.path.isfile(s_path):
+                    continue
+                else:
+                    source_path = s_path
+                    break
+
+            if source_path == "":
+                raise Exception(f"Internal program error - new patch file does not exist!\n{source_path}")
+
+            # replace file
+            msg = msg + f"Adding new patch file... - {destination_path}\n"
+            copyfile(source_path, destination_path)  # destination folders have to exist as first!!!
+            file_exist = os.path.isfile(destination_path)
+            if not file_exist:
+                raise Exception(f"File could not be created! Could be permission denied!\n{destination_path}")
+
+        if msg == "":
+            msg = "No new patch files were added"
         return msg.rstrip()
 
     def restore_backup_files(self) -> str:

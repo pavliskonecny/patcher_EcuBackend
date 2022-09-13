@@ -32,6 +32,9 @@ class MainWindow(QMainWindow):
             self.ui.txe_output.setPlainText("*** START INSTALLING PATCH ***")
             pf = PatchFiles()
 
+            msg = pf.add_new_patch_files()
+            self.ui.txe_output.appendPlainText(msg)
+
             msg = pf.check_destination_files()
             self.ui.txe_output.appendPlainText(msg)
 
