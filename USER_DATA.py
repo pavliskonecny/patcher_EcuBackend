@@ -19,4 +19,3 @@ Specify the relative path for files what are new and it is not possible to backu
 """
 NEW_PATCH_FILES = [
 ]
-"Test"
